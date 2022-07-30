@@ -18,7 +18,7 @@
 /// <reference path="TMETHelper.js" /> 
 
 
-let version = 2.849,
+let version = 2.850,
     OnlinePlayer = {},//已在线玩家
     fs = {},//文件
     tmp = {},//临时数据
@@ -4264,12 +4264,12 @@ function checkupdate() {
         }
         i++;
     }
-    network.httpGet('https://gitee.com/timidine/mcbe-lite-xloader-tmessential/raw/master/VER.txt', function (sta, da) {
+    network.httpGet('https://raw.githubusercontent.com/LiteLScript-Dev/TMEssential/main/version.txt', function (sta, da) {
         if (sta == 200) {
             if (da != "${version}" && !isNaN(+da)) {
                 logger.info("检测到更新包,更新包版本:", da);
                 logger.info("开始自动下载...");
-                network.httpGet('https://gitee.com/timidine/mcbe-lite-xloader-tmessential/raw/master/TMEssential.js', function (st, dat) {
+                network.httpGet('https://raw.githubusercontent.com/LiteLScript-Dev/TMEssential/main/TMEssential.js', function (st, dat) {
                     if (st == 200) {
                         let plugin = dat.replace(/\r/g, ''),
                             loaderDir = ".\\plugins";
@@ -4317,12 +4317,12 @@ file.delete('.\\TMETAutoUpdate.js');`;
 
 function NJSAutoUpdate() {
     let Sid = setInterval(() => {
-        network.httpGet('https://gitee.com/timidine/mcbe-lite-xloader-tmessential/raw/master/VER.txt', function (sta, da) {
+        network.httpGet('https://raw.githubusercontent.com/LiteLScript-Dev/TMEssential/main/version.txt', function (sta, da) {
             if (sta == 200) {
-                if (da != version) {
+                if (da != `${version}`) {
                     logger.info("检测到更新包,更新包版本:", da);
                     logger.info("开始自动下载...");
-                    network.httpGet('https://gitee.com/timidine/mcbe-lite-xloader-tmessential/raw/master/TMEssential.js', function (st, dat) {
+                    network.httpGet('https://raw.githubusercontent.com/LiteLScript-Dev/TMEssential/main/TMEssential.js', function (st, dat) {
                         if (st == 200) {
                             let plugin = dat;
                             file.writeTo('' + getLoadPath() + '\\TMEssential.js', plugin);
